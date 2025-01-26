@@ -25,8 +25,13 @@ const renderBoard = () => {
 
             if (square) {
                 const piece = document.createElement("div");
+               
                 piece.classList.add("piece", square.color === 'w' ? "white" : "black");
-                piece.innerText = pieceUnicode[square.type];
+                const pieceSymbol = square.color === 'w' 
+                ? pieceUnicode[square.type.toUpperCase()]  // White ke liye uppercase
+                : pieceUnicode[square.type.toLowerCase()]; // Black ke liye lowercase
+        
+            piece.innerText = pieceSymbol;
                 piece.draggable = (playerRole === square.color && chess.turn() === playerRole);
                 
                 piece.addEventListener("dragstart", (e) => {
@@ -72,11 +77,20 @@ const renderBoard = () => {
 // WebSocket event listeners
 socket.on("playerRole", (role) => {
     playerRole = role;
+    if (role === "w") {
+        const b = document.querySelector('.player');
+        b.innerHTML = "<h3> PLAYER 1</h3>";
+    } else if (role === "b") {
+        const b = document.querySelector('.player');
+        b.innerHTML = "<h3> PLAYER 2</h3>";
+    }
     renderBoard();
 });
 
 socket.on("spectatorRole", () => {
     playerRole = "spectator";
+    const b = document.querySelector('.player');
+        b.innerHTML = "<h3> Game is already full! only you see </h3>";
     renderBoard();
 });
 
