@@ -1,8 +1,30 @@
+.player {
+    text-align: center;    
+    font-size: 24px;       
+    font-weight: bold;   
+    margin-bottom: 20px; 
+    color: white;         
+}
+
 .chessboard {
     display: grid;
-    grid-template-columns: repeat(8, 50px);
-    grid-template-rows: repeat(8, 50px);
+    grid-template-columns: repeat(8, 75px);  
+    grid-template-rows: repeat(8, 75px);     
     transform: rotate(0deg);
+    margin: 0 auto; 
+    width: 600px; 
+    height: 600px; 
+}
+
+
+body {
+    display: flex;
+    flex-direction: column;  
+    justify-content: center; 
+    align-items: center;     
+    height: 100vh;           
+    margin: 0;
+    background-color: #222; 
 }
 
 .square {
@@ -20,7 +42,7 @@
 }
 
 .piece {
-    font-size: 36px;
+    font-size: 48px;   
     cursor: pointer;
 }
 
